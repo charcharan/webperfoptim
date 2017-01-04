@@ -546,6 +546,7 @@ window.addEventListener('scroll', function() {
 });
 
 // Generates the sliding pizzas when the page loads.
+// there is no need for these many pizzas and by reducing the number of pizzas will definitely optimize
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
