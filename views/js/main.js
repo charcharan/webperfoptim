@@ -18,6 +18,9 @@ cameron *at* udacity *dot* com
 
 // As you may have realized, this website randomly generates pizzas.
 // Here are arrays of all possible pizza ingredients.
+// as of my observation i made changes to the following functions
+//1. changePizzaSizes() : by declaring some local variables
+//2. updatePositions() : by declaring some local variables and declaring items variable globally
 var pizzaIngredients = {};
 pizzaIngredients.meats = [
   "Pepperoni",
@@ -427,7 +430,7 @@ var resizePizzas = function(size) {
   var oldWidth = elem.offsetWidth;
     var windowWidth = document.getElementById("randomPizzas").offsetWidth;
 
-  var oldSize = oldWidth / windowWidth;    
+  var oldSize = oldWidth / windowWidth;
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
       switch(size) {
@@ -448,6 +451,7 @@ var resizePizzas = function(size) {
     return dx;
   }
   // Iterates through pizza elements on the page and changes their widths
+  // in the following function by making variable pizzas can optimize by avoiding continuous DOM access
  function changePizzaSizes(size) {
   var pizzas = document.getElementsByClassName("randomPizzaContainer");
   var dx = determineDx(pizzas[0], size);
@@ -504,6 +508,7 @@ var items;
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+// in the following function changes are made
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -512,7 +517,7 @@ function updatePositions() {
   var lengthHolder = items.length;
 
   var cal = document.body.scrollTop / 1250;
-    
+
   for (var i = 0; i < lengthHolder; i++) {
     var phase = Math.sin((cal) + (i % 5));
     pizzaHolder.push(phase);
@@ -522,7 +527,6 @@ function updatePositions() {
     var phase1 = pizzaHolder[i % 5];
 
       items[i].style.left = items[i].basicLeft + 100 * phase1 + 'px';
-      // window.items[i].style.transform = 'translateX(' + (300 * pizzaHolder[i]) + 'px)';
 
 
 }
